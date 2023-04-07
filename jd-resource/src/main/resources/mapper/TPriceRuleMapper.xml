@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.resource.mapper.TPriceRuleMapper">
+    
+    <resultMap type="TPriceRule" id="TPriceRuleResult">
+        <result property="id"    column="id"    />
+        <result property="qty1"    column="qty1"    />
+        <result property="unitprice1"    column="unitPrice1"    />
+        <result property="extprice1"    column="extPrice1"    />
+        <result property="qty2"    column="qty2"    />
+        <result property="unitprice2"    column="unitPrice2"    />
+        <result property="extprice2"    column="extPrice2"    />
+        <result property="qty3"    column="qty3"    />
+        <result property="unitprice3"    column="unitPrice3"    />
+        <result property="extprice3"    column="extPrice3"    />
+        <result property="qty4"    column="qty4"    />
+        <result property="unitprice4"    column="unitPrice4"    />
+        <result property="extprice4"    column="extPrice4"    />
+        <result property="qty5"    column="qty5"    />
+        <result property="unitprice5"    column="unitPrice5"    />
+        <result property="extprice5"    column="extPrice5"    />
+        <result property="qty6"    column="qty6"    />
+        <result property="unitprice6"    column="unitPrice6"    />
+        <result property="extprice6"    column="extPrice6"    />
+        <result property="qty7"    column="qty7"    />
+        <result property="unitprice7"    column="unitPrice7"    />
+        <result property="extprice7"    column="extPrice7"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="isDelete"    column="is_Delete"    />
+    </resultMap>
+
+    <sql id="selectTPriceRuleVo">
+        select id, qty1, unitPrice1, extPrice1, qty2, unitPrice2, extPrice2, qty3, unitPrice3, extPrice3, qty4, unitPrice4, extPrice4, qty5, unitPrice5, extPrice5, qty6, unitPrice6, extPrice6, qty7, unitPrice7, extPrice7, status, create_time, update_time, remark, is_Delete from t_price_rule
+    </sql>
+
+    <select id="selectTPriceRuleList" parameterType="TPriceRule" resultMap="TPriceRuleResult">
+        <include refid="selectTPriceRuleVo"/>
+        <where>  
+            <if test="qty1 != null  and qty1 != ''"> and qty1 = #{qty1}</if>
+            <if test="unitprice1 != null  and unitprice1 != ''"> and unitPrice1 = #{unitprice1}</if>
+            <if test="extprice1 != null  and extprice1 != ''"> and extPrice1 = #{extprice1}</if>
+            <if test="qty2 != null  and qty2 != ''"> and qty2 = #{qty2}</if>
+            <if test="unitprice2 != null  and unitprice2 != ''"> and unitPrice2 = #{unitprice2}</if>
+            <if test="extprice2 != null  and extprice2 != ''"> and extPrice2 = #{extprice2}</if>
+            <if test="qty3 != null  and qty3 != ''"> and qty3 = #{qty3}</if>
+            <if test="unitprice3 != null  and unitprice3 != ''"> and unitPrice3 = #{unitprice3}</if>
+            <if test="extprice3 != null  and extprice3 != ''"> and extPrice3 = #{extprice3}</if>
+            <if test="qty4 != null  and qty4 != ''"> and qty4 = #{qty4}</if>
+            <if test="unitprice4 != null  and unitprice4 != ''"> and unitPrice4 = #{unitprice4}</if>
+            <if test="extprice4 != null  and extprice4 != ''"> and extPrice4 = #{extprice4}</if>
+            <if test="qty5 != null  and qty5 != ''"> and qty5 = #{qty5}</if>
+            <if test="unitprice5 != null  and unitprice5 != ''"> and unitPrice5 = #{unitprice5}</if>
+            <if test="extprice5 != null  and extprice5 != ''"> and extPrice5 = #{extprice5}</if>
+            <if test="qty6 != null  and qty6 != ''"> and qty6 = #{qty6}</if>
+            <if test="unitprice6 != null  and unitprice6 != ''"> and unitPrice6 = #{unitprice6}</if>
+            <if test="extprice6 != null  and extprice6 != ''"> and extPrice6 = #{extprice6}</if>
+            <if test="qty7 != null  and qty7 != ''"> and qty7 = #{qty7}</if>
+            <if test="unitprice7 != null  and unitprice7 != ''"> and unitPrice7 = #{unitprice7}</if>
+            <if test="extprice7 != null  and extprice7 != ''"> and extPrice7 = #{extprice7}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="isDelete != null "> and is_Delete = #{isDelete}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectTPriceRuleById" parameterType="Long" resultMap="TPriceRuleResult">
+        <include refid="selectTPriceRuleVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTPriceRule" parameterType="TPriceRule" useGeneratedKeys="true" keyProperty="id">
+        insert into t_price_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="qty1 != null">qty1,</if>
+            <if test="unitprice1 != null">unitPrice1,</if>
+            <if test="extprice1 != null">extPrice1,</if>
+            <if test="qty2 != null">qty2,</if>
+            <if test="unitprice2 != null">unitPrice2,</if>
+            <if test="extprice2 != null">extPrice2,</if>
+            <if test="qty3 != null">qty3,</if>
+            <if test="unitprice3 != null">unitPrice3,</if>
+            <if test="extprice3 != null">extPrice3,</if>
+            <if test="qty4 != null">qty4,</if>
+            <if test="unitprice4 != null">unitPrice4,</if>
+            <if test="extprice4 != null">extPrice4,</if>
+            <if test="qty5 != null">qty5,</if>
+            <if test="unitprice5 != null">unitPrice5,</if>
+            <if test="extprice5 != null">extPrice5,</if>
+            <if test="qty6 != null">qty6,</if>
+            <if test="unitprice6 != null">unitPrice6,</if>
+            <if test="extprice6 != null">extPrice6,</if>
+            <if test="qty7 != null">qty7,</if>
+            <if test="unitprice7 != null">unitPrice7,</if>
+            <if test="extprice7 != null">extPrice7,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="isDelete != null">is_Delete,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="qty1 != null">#{qty1},</if>
+            <if test="unitprice1 != null">#{unitprice1},</if>
+            <if test="extprice1 != null">#{extprice1},</if>
+            <if test="qty2 != null">#{qty2},</if>
+            <if test="unitprice2 != null">#{unitprice2},</if>
+            <if test="extprice2 != null">#{extprice2},</if>
+            <if test="qty3 != null">#{qty3},</if>
+            <if test="unitprice3 != null">#{unitprice3},</if>
+            <if test="extprice3 != null">#{extprice3},</if>
+            <if test="qty4 != null">#{qty4},</if>
+            <if test="unitprice4 != null">#{unitprice4},</if>
+            <if test="extprice4 != null">#{extprice4},</if>
+            <if test="qty5 != null">#{qty5},</if>
+            <if test="unitprice5 != null">#{unitprice5},</if>
+            <if test="extprice5 != null">#{extprice5},</if>
+            <if test="qty6 != null">#{qty6},</if>
+            <if test="unitprice6 != null">#{unitprice6},</if>
+            <if test="extprice6 != null">#{extprice6},</if>
+            <if test="qty7 != null">#{qty7},</if>
+            <if test="unitprice7 != null">#{unitprice7},</if>
+            <if test="extprice7 != null">#{extprice7},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTPriceRule" parameterType="TPriceRule">
+        update t_price_rule
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="qty1 != null">qty1 = #{qty1},</if>
+            <if test="unitprice1 != null">unitPrice1 = #{unitprice1},</if>
+            <if test="extprice1 != null">extPrice1 = #{extprice1},</if>
+            <if test="qty2 != null">qty2 = #{qty2},</if>
+            <if test="unitprice2 != null">unitPrice2 = #{unitprice2},</if>
+            <if test="extprice2 != null">extPrice2 = #{extprice2},</if>
+            <if test="qty3 != null">qty3 = #{qty3},</if>
+            <if test="unitprice3 != null">unitPrice3 = #{unitprice3},</if>
+            <if test="extprice3 != null">extPrice3 = #{extprice3},</if>
+            <if test="qty4 != null">qty4 = #{qty4},</if>
+            <if test="unitprice4 != null">unitPrice4 = #{unitprice4},</if>
+            <if test="extprice4 != null">extPrice4 = #{extprice4},</if>
+            <if test="qty5 != null">qty5 = #{qty5},</if>
+            <if test="unitprice5 != null">unitPrice5 = #{unitprice5},</if>
+            <if test="extprice5 != null">extPrice5 = #{extprice5},</if>
+            <if test="qty6 != null">qty6 = #{qty6},</if>
+            <if test="unitprice6 != null">unitPrice6 = #{unitprice6},</if>
+            <if test="extprice6 != null">extPrice6 = #{extprice6},</if>
+            <if test="qty7 != null">qty7 = #{qty7},</if>
+            <if test="unitprice7 != null">unitPrice7 = #{unitprice7},</if>
+            <if test="extprice7 != null">extPrice7 = #{extprice7},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="isDelete != null">is_Delete = #{isDelete},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTPriceRuleById" parameterType="Long">
+        delete from t_price_rule where id = #{id}
+    </delete>
+
+    <delete id="deleteTPriceRuleByIds" parameterType="String">
+        delete from t_price_rule where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
