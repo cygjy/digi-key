@@ -36,6 +36,10 @@ public class TProductVo extends BaseDomain
     @Excel(name = "描述")
     private String bodyHtml;
 
+    /** 大描述 */
+    @Excel(name = "大描述")
+    private String bigDescription;
+
     /** 标题 */
     @Excel(name = "标题")
     private String title;
@@ -63,6 +67,10 @@ public class TProductVo extends BaseDomain
     /** 制造商 */
     @Excel(name = "制造商")
     private String sku;
+
+    /** 系列 */
+    @Excel(name = "系列")
+    private String series;
 
     /** 数据表 */
     @Excel(name = "数据表")

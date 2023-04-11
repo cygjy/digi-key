@@ -24,15 +24,6 @@ public class ProductController {
     private ProductService productService;
 
 
-    /**
-     * 导入产品
-     * @param files
-     * @return
-     */
-    @PostMapping(value = "/leading")
-    public AjaxResult leadingProduct(@RequestBody List<String> files){
-      return productService.leadingProduct(files);
-    }
 
     /**
      * 导入价格规则
@@ -44,15 +35,7 @@ public class ProductController {
         return productService.leadingPriceRule(files);
     }
 
-    /**
-     * 绑定 产品和价格规则
-     * @param
-     * @return
-     */
-    @PostMapping(value = "/leading/binding/rule")
-    public AjaxResult leadingBindingRule(){
-        return productService.leadingBindingRule();
-    }
+
 
 
     /**
@@ -63,5 +46,16 @@ public class ProductController {
     @PostMapping(value = "/leading/shopify")
     public AjaxResult leadingShopifyProduct(){
         return productService.leadingShopifyProduct();
+    }
+
+
+    /**
+     * 创建产品系列
+     * @param
+     * @return
+     */
+    @PostMapping(value = "/create/series")
+    public AjaxResult createSeries(){
+        return productService.createSeries();
     }
 }

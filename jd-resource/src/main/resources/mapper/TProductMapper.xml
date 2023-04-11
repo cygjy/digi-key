@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jd.resource.mapper.TProductMapper">
-    
+
     <resultMap type="TProduct" id="TProductResult">
-        <result property="id"    column="id"    />
-        <result property="productId"    column="product_id"    />
-        <result property="priceRuleId"    column="price_rule_id"    />
-        <result property="vendor"    column="vendor"    />
-        <result property="bodyHtml"    column="body_html"    />
-        <result property="title"    column="title"    />
-        <result property="handle"    column="handle"    />
-        <result property="images"    column="images"    />
-        <result property="tags"    column="tags"    />
-        <result property="productType"    column="product_type"    />
-        <result property="productParameter"    column="product_parameter"    />
-        <result property="sku"    column="sku"    />
-        <result property="dataSheet"    column="data_sheet"    />
-        <result property="priceRule"    column="price_rule"    />
-        <result property="status"    column="status"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
-        <result property="remark"    column="remark"    />
-        <result property="isDelete"    column="is_Delete"    />
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="priceRuleId" column="price_rule_id"/>
+        <result property="vendor" column="vendor"/>
+        <result property="bodyHtml" column="body_html"/>
+        <result property="bigDescription" column="big_description"/>
+        <result property="title" column="title"/>
+        <result property="handle" column="handle"/>
+        <result property="images" column="images"/>
+        <result property="tags" column="tags"/>
+        <result property="productType" column="product_type"/>
+        <result property="productParameter" column="product_parameter"/>
+        <result property="sku" column="sku"/>
+        <result property="series" column="series"/>
+
+        <result property="dataSheet" column="data_sheet"/>
+        <result property="priceRule" column="price_rule"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="isDelete" column="is_Delete"/>
+    </resultMap>
+
+    <resultMap type="TProductIdDto" id="TProductIdDtoResult">
+        <result property="product_id" column="product_id"/>
     </resultMap>
 
     <sql id="selectTProductVo">
-        select id, product_id, price_rule_id, vendor, body_html, title, handle, images, tags, product_type, product_parameter, sku, data_sheet, price_rule, status, create_time, update_time, remark, is_Delete from t_product
+        select id, product_id, price_rule_id, vendor, body_html, big_description ,title, handle, images, tags, product_type, product_parameter, sku, series,data_sheet, price_rule, status, create_time, update_time, remark, is_Delete from t_product
     </sql>
 
     <select id="selectTProductList" parameterType="TProduct" resultMap="TProductResult">
         <include refid="selectTProductVo"/>
-        <where>  
-            <if test="productId != null "> and product_id = #{productId}</if>
-            <if test="priceRuleId != null "> and price_rule_id = #{priceRuleId}</if>
-            <if test="vendor != null  and vendor != ''"> and vendor = #{vendor}</if>
-            <if test="bodyHtml != null  and bodyHtml != ''"> and body_html = #{bodyHtml}</if>
-            <if test="title != null  and title != ''"> and title = #{title}</if>
-            <if test="handle != null  and handle != ''"> and handle = #{handle}</if>
-            <if test="images != null  and images != ''"> and images = #{images}</if>
-            <if test="tags != null  and tags != ''"> and tags = #{tags}</if>
-            <if test="productType != null  and productType != ''"> and product_type = #{productType}</if>
-            <if test="productParameter != null  and productParameter != ''"> and product_parameter = #{productParameter}</if>
-            <if test="sku != null  and sku != ''"> and sku = #{sku}</if>
-            <if test="dataSheet != null  and dataSheet != ''"> and data_sheet = #{dataSheet}</if>
-            <if test="priceRule != null  and priceRule != ''"> and price_rule = #{priceRule}</if>
-            <if test="status != null  and status != ''"> and status = #{status}</if>
-            <if test="isDelete != null "> and is_Delete = #{isDelete}</if>
+        <where>
+            <if test="productId != null ">and product_id = #{productId}</if>
+            <if test="priceRuleId != null ">and price_rule_id = #{priceRuleId}</if>
+            <if test="vendor != null  and vendor != ''">and vendor = #{vendor}</if>
+            <if test="bodyHtml != null  and bodyHtml != ''">and body_html = #{bodyHtml}</if>
+            <if test="bigDescription != null  and bigDescription != ''">and big_description = #{bigDescription}</if>
+            <if test="title != null  and title != ''">and title = #{title}</if>
+            <if test="handle != null  and handle != ''">and handle = #{handle}</if>
+            <if test="images != null  and images != ''">and images = #{images}</if>
+            <if test="tags != null  and tags != ''">and tags = #{tags}</if>
+            <if test="productType != null  and productType != ''">and product_type = #{productType}</if>
+            <if test="productParameter != null  and productParameter != ''">and product_parameter =
+                #{productParameter}
+            </if>
+            <if test="sku != null  and sku != ''">and sku = #{sku}</if>
+            <if test="series != null  and series != ''">and series = #{series}</if>
+            <if test="dataSheet != null  and dataSheet != ''">and data_sheet = #{dataSheet}</if>
+            <if test="priceRule != null  and priceRule != ''">and price_rule = #{priceRule}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
+            <if test="isDelete != null ">and is_Delete = #{isDelete}</if>
         </where>
     </select>
-    
+
     <select id="selectTProductById" parameterType="Long" resultMap="TProductResult">
         <include refid="selectTProductVo"/>
         where id = #{id}
@@ -60,22 +71,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectProductList" parameterType="TProduct" resultMap="TProductResult">
         <include refid="selectTProductVo"/>
         <where>
-            <if test="productId != null "> and product_id = #{productId}</if>
-            <if test="priceRuleId != null "> and price_rule_id = #{priceRuleId}</if>
-            <if test="vendor != null  and vendor != ''"> and vendor = #{vendor}</if>
-            <if test="bodyHtml != null  and bodyHtml != ''"> and body_html = #{bodyHtml}</if>
-            <if test="title != null  and title != ''"> and title = #{title}</if>
-            <if test="handle != null  and handle != ''"> and handle = #{handle}</if>
-            <if test="images != null  and images != ''"> and images = #{images}</if>
-            <if test="tags != null  and tags != ''"> and tags = #{tags}</if>
-            <if test="productType != null  and productType != ''"> and product_type = #{productType}</if>
-            <if test="productParameter != null  and productParameter != ''"> and product_parameter = #{productParameter}</if>
-            <if test="sku != null  and sku != ''"> and sku = #{sku}</if>
-            <if test="dataSheet != null  and dataSheet != ''"> and data_sheet = #{dataSheet}</if>
-            <if test="priceRule != null  and priceRule != ''"> and price_rule = #{priceRule}</if>
-            <if test="status != null  and status != ''"> and status = #{status}</if>
-            <if test="isDelete != null "> and is_Delete = #{isDelete}</if>
+            <if test="productId != null ">and product_id = #{productId}</if>
+            <if test="priceRuleId != null ">and price_rule_id = #{priceRuleId}</if>
+            <if test="vendor != null  and vendor != ''">and vendor = #{vendor}</if>
+            <if test="bodyHtml != null  and bodyHtml != ''">and body_html = #{bodyHtml}</if>
+            <if test="bigDescription != null  and bigDescription != ''">and big_description = #{bigDescription}</if>
+            <if test="title != null  and title != ''">and title = #{title}</if>
+            <if test="handle != null  and handle != ''">and handle = #{handle}</if>
+            <if test="images != null  and images != ''">and images = #{images}</if>
+            <if test="tags != null  and tags != ''">and tags = #{tags}</if>
+            <if test="productType != null  and productType != ''">and product_type = #{productType}</if>
+            <if test="productParameter != null  and productParameter != ''">and product_parameter =
+                #{productParameter}
+            </if>
+            <if test="sku != null  and sku != ''">and sku = #{sku}</if>
+            <if test="series != null  and series != ''">and series = #{series}</if>
+            <if test="dataSheet != null  and dataSheet != ''">and data_sheet = #{dataSheet}</if>
+            <if test="priceRule != null  and priceRule != ''">and price_rule = #{priceRule}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
+            <if test="isDelete != null ">and is_Delete = #{isDelete}</if>
         </where>
+    </select>
+
+
+    <select id="selectProductSeriesDistinct" parameterType="TProduct" resultMap="TProductResult">
+                select distinct series from t_product
+    </select>
+    <select id="selectProductIdList" parameterType="TProduct" resultMap="TProductIdDtoResult">
+        select product_id from t_product where product_id is not null
     </select>
 
     <insert id="insertTProduct" parameterType="TProduct" useGeneratedKeys="true" keyProperty="id">
@@ -85,6 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="priceRuleId != null">price_rule_id,</if>
             <if test="vendor != null">vendor,</if>
             <if test="bodyHtml != null">body_html,</if>
+            <if test="bigDescription != null">big_description,</if>
             <if test="title != null">title,</if>
             <if test="handle != null">handle,</if>
             <if test="images != null">images,</if>
@@ -92,6 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productType != null">product_type,</if>
             <if test="productParameter != null">product_parameter,</if>
             <if test="sku != null">sku,</if>
+            <if test="series != null">series,</if>
             <if test="dataSheet != null">data_sheet,</if>
             <if test="priceRule != null">price_rule,</if>
             <if test="status != null">status,</if>
@@ -99,12 +124,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
             <if test="isDelete != null">is_Delete,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="productId != null">#{productId},</if>
             <if test="priceRuleId != null">#{priceRuleId},</if>
             <if test="vendor != null">#{vendor},</if>
             <if test="bodyHtml != null">#{bodyHtml},</if>
+            <if test="bigDescription != null">#{bigDescription},</if>
             <if test="title != null">#{title},</if>
             <if test="handle != null">#{handle},</if>
             <if test="images != null">#{images},</if>
@@ -112,6 +138,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productType != null">#{productType},</if>
             <if test="productParameter != null">#{productParameter},</if>
             <if test="sku != null">#{sku},</if>
+            <if test="series != null">#{series},</if>
             <if test="dataSheet != null">#{dataSheet},</if>
             <if test="priceRule != null">#{priceRule},</if>
             <if test="status != null">#{status},</if>
@@ -119,7 +146,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
             <if test="isDelete != null">#{isDelete},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateTProduct" parameterType="TProduct">
@@ -129,6 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="priceRuleId != null">price_rule_id = #{priceRuleId},</if>
             <if test="vendor != null">vendor = #{vendor},</if>
             <if test="bodyHtml != null">body_html = #{bodyHtml},</if>
+            <if test="bigDescription != null">big_description = #{bigDescription},</if>
             <if test="title != null">title = #{title},</if>
             <if test="handle != null">handle = #{handle},</if>
             <if test="images != null">images = #{images},</if>
@@ -136,6 +164,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productType != null">product_type = #{productType},</if>
             <if test="productParameter != null">product_parameter = #{productParameter},</if>
             <if test="sku != null">sku = #{sku},</if>
+            <if test="series != null">series = #{series},</if>
             <if test="dataSheet != null">data_sheet = #{dataSheet},</if>
             <if test="priceRule != null">price_rule = #{priceRule},</if>
             <if test="status != null">status = #{status},</if>
@@ -146,13 +175,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </trim>
         where id = #{id}
     </update>
+    <update id="updateTProductById" parameterType="TProduct">
+        update t_product set product_id = #{productId} where id = #{id}
+    </update>
 
     <delete id="deleteTProductById" parameterType="Long">
         delete from t_product where id = #{id}
     </delete>
 
     <delete id="deleteTProductByIds" parameterType="String">
-        delete from t_product where id in 
+        delete from t_product where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

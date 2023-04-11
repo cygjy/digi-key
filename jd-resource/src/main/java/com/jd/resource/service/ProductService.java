@@ -12,12 +12,6 @@ import java.util.List;
 public interface ProductService
 {
 
-    /**
-     * 导入产品
-     * @param files
-     * @return
-     */
-    AjaxResult leadingProduct(List<String> files);
 
     /**
      * 导入价格
@@ -34,9 +28,9 @@ public interface ProductService
     AjaxResult leadingShopifyProduct();
 
     /**
-     * 绑定 产品和价格规则
+     * 创建产品系列
      * @return
      */
-    AjaxResult leadingBindingRule();
+    AjaxResult createSeries();
 
 }

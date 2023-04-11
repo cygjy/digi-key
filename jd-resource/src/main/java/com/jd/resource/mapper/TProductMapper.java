@@ -1,6 +1,7 @@
 package com.jd.resource.mapper;
 
 import com.jd.resource.domain.TProduct;
+import com.jd.resource.domain.dto.TProductIdDto;
 
 import java.util.List;
 
@@ -67,5 +68,24 @@ public interface TProductMapper
      */
     List<TProduct> selectProductList(TProduct product);
 
-    void updateProductBatch(List<Object> list);
+
+    /**
+     * 更新shopify产品id
+     * @param product
+     */
+    void updateTProductById(TProduct product);
+
+    /**
+     * 产品系列去重
+     * @param product
+     * @return
+     */
+    List<TProduct> selectProductSeriesDistinct(TProduct product);
+
+    /**
+     * 只拿产品id
+     * @param product
+     * @return
+     */
+    List<TProductIdDto> selectProductIdList(TProduct product);
 }
